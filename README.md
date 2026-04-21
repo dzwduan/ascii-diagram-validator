@@ -21,27 +21,18 @@ Output includes `PASS`/`FAIL` status and actionable `FIX:` instructions for each
 
 ## Installation
 
-### 1. Install the validator script
+### Marketplace Installation (Recommended)
+
+```bash
+/plugin marketplace add dzw/ascii-diagram-validator
+/plugin install ascii-diagram-validator@dzw
+```
+
+### Manual Installation
 
 ```bash
 cp validate_ascii.pl ~/.local/bin/validate_ascii.pl
 chmod +x ~/.local/bin/validate_ascii.pl
-```
-
-Make sure `~/.local/bin` is in your `PATH`:
-
-```bash
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc   # or ~/.bashrc
-source ~/.zshrc
-```
-
-### 2. Install the Claude Code skill (optional)
-
-Copy the skill into your Claude Code skills directory so Claude auto-validates diagrams it creates:
-
-```bash
-mkdir -p ~/.claude/skills/ascii-validator
-cp .claude/skills/ascii-validator/SKILL.md ~/.claude/skills/ascii-validator/SKILL.md
 ```
 
 ## Usage
@@ -117,8 +108,10 @@ The skill is triggered automatically when Claude produces box-drawing characters
 ascii-diagram-validator/
 ├── validate_ascii.pl                        # The validator tool
 ├── README.md                                # This file
-└── .claude/
-    └── skills/
-        └── ascii-validator/
-            └── SKILL.md                     # Claude Code skill definition
+├── .claude-plugin/
+│   ├── marketplace.json                     # Marketplace metadata
+│   └── plugin.json                          # Plugin definition
+└── skills/
+    └── ascii-validator/
+        └── SKILL.md                         # Claude Code skill definition
 ```

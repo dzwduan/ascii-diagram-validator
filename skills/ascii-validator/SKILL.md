@@ -1,7 +1,10 @@
 ---
-name: ascii-validator
-description: Validate ASCII diagram alignment and iteratively fix issues. Use this skill automatically whenever you create an ASCII diagram to ensure proper alignment of box-drawing characters, corners, and vertical/horizontal lines.
+name: ascii-diagram-validator
+description: Validate ASCII diagram alignment and iteratively fix issues. Automatically validates and iteratively fixes diagrams created or modified by Claude.
 allowed-tools: Bash, Read, Write, Edit
+user-invocable: true
+argument-hint: "[<file-path>]"
+paths: ["**/*.md", "**/*.txt", "**/*.ascii"]
 ---
 
 # ASCII Diagram Alignment Validator
@@ -14,7 +17,7 @@ This skill validates ASCII diagrams for alignment issues using the `validate_asc
 
 ## Validation Tool
 
-The validator is located at `~/.local/bin/validate_ascii.pl` and checks:
+The validator is located in the plugin root directory and checks:
 
 1. **Consistent line widths** - All lines must be the same display width
 2. **Box corner alignment** - Nested boxes must have vertically aligned corners
@@ -41,7 +44,7 @@ EOF
 Run the validator:
 
 ```bash
-~/.local/bin/validate_ascii.pl /tmp/ascii-diagram.txt
+../validate_ascii.pl /tmp/ascii-diagram.txt
 ```
 
 ### Step 3: Fix Issues
@@ -70,7 +73,7 @@ After making corrections, run the validator again. Repeat steps 3-4 until the va
 ## Example Session
 
 ```bash
-$ ~/.local/bin/validate_ascii.pl /tmp/diagram.txt
+$ ../validate_ascii.pl /tmp/diagram.txt
 File: /tmp/diagram.txt
 Status: FAIL
 Issues Found:
@@ -132,7 +135,7 @@ sed -n '138,156p' README.md > /tmp/ascii-diagram.txt
 Run the validator on the extracted diagram:
 
 ```bash
-~/.local/bin/validate_ascii.pl /tmp/ascii-diagram.txt
+../validate_ascii.pl /tmp/ascii-diagram.txt
 ```
 
 Fix issues as described in the standard workflow (Steps 3-4 above). Repeat until `PASS`.

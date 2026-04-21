@@ -1,0 +1,21 @@
+{
+  "name": "ascii-diagram-validator",
+  "owner": {
+    "name": "dzw"
+  },
+  "metadata": {
+    "description": "Marketplace for the ASCII diagram validator plugin.",
+    "version": "0.0.1"
+  },
+  "plugins": [
+    {
+      "name": "ascii-diagram-validator",
+      "source": "./",
+      "description": "Validate ASCII box-drawing diagrams for alignment issues. Automatically validates and iteratively fixes diagrams created or modified by Claude.",
+      "version": "0.0.1",
+      "author": {
+        "name": "dzw"
+      }
+    }
+  ]
+}
